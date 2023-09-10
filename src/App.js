@@ -9,7 +9,7 @@ function Square({ value, onSquareClick }) {
   );
 }
 
-function Board({ xIsNext, squares, onPlay }) {
+function Board({ xIsNext, squares, onPlay, currentTurn }) {
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) return;
 
@@ -26,6 +26,8 @@ function Board({ xIsNext, squares, onPlay }) {
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
+
+  if (currentTurn === 9) status = "draw";
 
   return (
     <React.Fragment>
@@ -82,7 +84,12 @@ export default function Game() {
   return (
     <div className="game">
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <Board
+          xIsNext={xIsNext}
+          squares={currentSquares}
+          onPlay={handlePlay}
+          currentTurn={currentMove}
+        />
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
