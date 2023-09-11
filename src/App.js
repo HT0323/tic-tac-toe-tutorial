@@ -1,4 +1,5 @@
-import React from "react";
+import * as React from "react";
+import Button from "@mui/material/Button";
 import { useState } from "react";
 
 function Square({ value, onSquareClick }) {
@@ -87,7 +88,14 @@ export default function Game() {
     }
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
+        <Button
+          variant="text"
+          className="order-button"
+          onClick={() => jumpTo(move)}
+          color="success"
+        >
+          {description}
+        </Button>
       </li>
     );
   });
@@ -105,12 +113,21 @@ export default function Game() {
         />
       </div>
       <div className="game-info">
-        <button className="game--button" onClick={handleReset}>
+        <Button
+          variant="contained"
+          className="reset-button"
+          onClick={handleReset}
+        >
           Game Reset
-        </button>
-        <button className="game-button" onClick={handleOrder}>
+        </Button>
+        <Button
+          variant="outlined"
+          className="order-button"
+          onClick={handleOrder}
+          color="secondary"
+        >
           {isAscOrder ? "▲" : "▼"}
-        </button>
+        </Button>
         <ol>{moves}</ol>
       </div>
     </div>

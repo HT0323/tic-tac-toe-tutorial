@@ -89,6 +89,10 @@ body {
   margin-left: 20px;
 }
 
-.game-button {
+.order-button {
+  margin-left: 40px;
+}
+
+.reset-button {
   margin-left: 40px;
 }
