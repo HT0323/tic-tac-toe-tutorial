@@ -54,6 +54,8 @@ function Board({ xIsNext, squares, onPlay, currentTurn }) {
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
+  const [isAscOrder, setIsAscOrder] = useState(true);
+
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
@@ -72,6 +74,10 @@ export default function Game() {
     setCurrentMove(0);
   }
 
+  function handleOrder() {
+    setIsAscOrder(!isAscOrder);
+  }
+
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
@@ -86,6 +92,8 @@ export default function Game() {
     );
   });
 
+  if (!isAscOrder) moves.reverse();
+
   return (
     <div className="game">
       <div className="game-board">
@@ -97,8 +105,11 @@ export default function Game() {
         />
       </div>
       <div className="game-info">
-        <button className="game-reset-button" onClick={handleReset}>
+        <button className="game--button" onClick={handleReset}>
           Game Reset
+        </button>
+        <button className="game-button" onClick={handleOrder}>
+          {isAscOrder ? "▲" : "▼"}
         </button>
         <ol>{moves}</ol>
       </div>
