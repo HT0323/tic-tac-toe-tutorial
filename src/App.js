@@ -67,6 +67,11 @@ export default function Game() {
     setCurrentMove(nextMove);
   }
 
+  function handleReset() {
+    setHistory([Array(9).fill(null)]);
+    setCurrentMove(0);
+  }
+
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
@@ -92,6 +97,9 @@ export default function Game() {
         />
       </div>
       <div className="game-info">
+        <button className="game-reset-button" onClick={handleReset}>
+          Game Reset
+        </button>
         <ol>{moves}</ol>
       </div>
     </div>
